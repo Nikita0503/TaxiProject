@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
 import {Provider} from 'react-redux';
+import { Icon } from 'react-native-elements';
 import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './redux/store';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
@@ -22,32 +23,40 @@ const Menu = createBottomTabNavigator(
   {
     Home: {
       screen: HomeContainer, 
-      navigationOptions: {tabBarIcon: ({ focused }) => <Image resizeMode='contain' style={{width: 40, height: 40}} 
-        source={focused ? 
-          require('./content/images/ic_home_white.png') 
-          :
-          require('./content/images/ic_home_gray.png') }/>}},
+      navigationOptions: {tabBarIcon: ({ focused }) => 
+      <Icon 
+        size={35}
+        name="map"
+        color={focused ? 'white' : "gray"}
+        type="foundation"
+      />}},
     History: {
       screen: HistoryContainer, 
-      navigationOptions: {tabBarIcon: ({ focused }) => <Image resizeMode='contain' style={{width: 40, height: 40}} 
-        source={focused ? 
-          require('./content/images/ic_home_white.png') 
-          :
-          require('./content/images/ic_home_gray.png') }/>}},
+      navigationOptions: {tabBarIcon: ({ focused }) => 
+      <Icon 
+        size={35}
+        name="history"
+        color={focused ? 'white' : "gray"}
+        type="font-awesome"
+      />}},
     WorkAndBalance: {
       screen: CardsContainer,
-      navigationOptions: {tabBarIcon: ({ focused }) => <Image resizeMode='contain' style={{width: 40, height: 40}} 
-        source={focused ? 
-          require('./content/images/ic_home_white.png') 
-          :
-          require('./content/images/ic_home_gray.png') }/>}},
+      navigationOptions: {tabBarIcon: ({ focused }) => 
+      <Icon 
+        size={35}
+        name="cc-mastercard"
+        color={focused ? 'white' : "gray"}
+        type="font-awesome"
+      />}},
     Profile: {
       screen: ProfileContainer,
-      navigationOptions: {tabBarIcon: ({ focused }) => <Image resizeMode='contain' style={{width: 40, height: 40}} 
-        source={focused ? 
-          require('./content/images/ic_home_white.png') 
-          :
-          require('./content/images/ic_home_gray.png') }/>}}
+      navigationOptions: {tabBarIcon: ({ focused }) => 
+      <Icon 
+        size={35}
+        name="profile"
+        color={focused ? 'white' : "gray"}
+        type="ant-design"
+      />}}
   }, 
   {
   tabBarOptions: {

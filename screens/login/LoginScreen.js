@@ -13,7 +13,7 @@ export default class LoginScreen extends React.Component {
         >
         <View style={{flex: 3, justifyContent: 'center'}}>
         <Image
-          source={require('../../content/images/logo.png')}
+          source={require('../../content/images/logo_rockstar.png')}
           style={{ width: 250, height: 250, resizeMode: 'contain'}}
         />
         </View>

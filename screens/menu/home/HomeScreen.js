@@ -17,7 +17,9 @@ export default class HomeScreen extends React.Component {
   }
   
   state = {
-    fadeAnim: new Animated.Value(0)
+    fadeAnim: new Animated.Value(0),
+    latitude: 50.5092579,
+    longitude: 30.4979999
   }
 
   closeChat = () => this.props.setShowChat(false)
@@ -36,6 +38,11 @@ export default class HomeScreen extends React.Component {
     }).start();
   };
 
+  drow = () => {
+    let timerId = setInterval(() => this.setState({latitude: this.state.latitude - 0.00005, longitude: this.state.longitude - 0.000001}), 100);
+    setTimeout(() => { clearInterval(timerId);}, 20000);
+  }
+
   render(){
     return (
       <View style={styles.container}>
@@ -44,12 +51,12 @@ export default class HomeScreen extends React.Component {
             height: '100%',
             width: '100%'}}
           region={{
-            latitude: 50.5071379,
-            longitude: 30.4973214,
+            latitude: this.state.latitude,//50.5071379,
+            longitude: this.state.longitude,//30.4973214,
             latitudeDelta: 0.015,
             longitudeDelta: 0.0121,
           }}>
-          <Marker coordinate={{ latitude: 50.5092579, longitude: 30.4979999 }} />
+          <Marker coordinate={{ latitude: this.state.latitude, longitude: this.state.longitude }}/>
         </MapView>
         <View style={{width: '100%'}}>
           <TouchableOpacity onPress={() => {
@@ -75,14 +82,14 @@ export default class HomeScreen extends React.Component {
             style={{width: '100%', height: this.state.fadeAnim, }}
             data={this.props.drivers}
             renderItem={({ item }) => 
-            <Driver 
-              name={item.name}
-              avatar={item.avatar}
-              distance={item.distance}
-              rate={item.rate}
-              onPress={() => {
-                this.props.setShowDriver(true)
-              }} 
+              <Driver 
+                name={item.name}
+                avatar={item.avatar}
+                distance={item.distance}
+                rate={item.rate}
+                onPress={() => {
+                  this.props.setShowDriver(true)
+                }} 
               />}
               keyExtractor={item => item.id}
           />
@@ -106,7 +113,12 @@ export default class HomeScreen extends React.Component {
         style={{ backgroundColor: '#5067FF' }}
         position="topRight"
         onPress={() => this.props.setShowFilter(true)}>
-          <Text>F</Text>
+          <Icon 
+            size={25}
+            name="filter"
+            color='white'
+            type="ant-design"
+          />
       </Fab>
     )
   }
@@ -121,7 +133,12 @@ export default class HomeScreen extends React.Component {
         style={{ backgroundColor: 'red' }}
         position="topRight"
         onPress={() => this.props.setShowChat(true)}>
-          <Text>Chat</Text>
+          <Icon 
+            size={25}
+            name="wechat"
+            color='white'
+            type="ant-design"
+          />
       </Fab>)
   }
 
@@ -364,6 +381,7 @@ export default class HomeScreen extends React.Component {
             this.props.setDriver("Clava Coca");
             this.props.setShowDrivers(false);
             this.props.setShowDriver(false);
+            this.drow()
             this.hileDrivers()
           }} />
         </View>

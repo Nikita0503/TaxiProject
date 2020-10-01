@@ -45,10 +45,11 @@ export default class ProfileScreen extends React.Component {
                     </View>
                 </View>
             </View>
-              <View style={{width: '100%'}}>
-                <Text style={{color: '#f0f0f0', marginLeft: 10}}>To change the data, enter the password</Text>
+            <View style={{width: '100%'}}>
+                <Text style={{color: 'gray', marginLeft: 10}}>To change the data, enter the password</Text>
                 <Input
                     containerStyle={{width: '100%'}}
+                    placeholderTextColor="#f0f0f0"
                     placeholder='password'
                     rightIcon={{ type: 'font-awesome', name: 'lock' }}
                     secureTextEntry={true}
@@ -66,7 +67,7 @@ export default class ProfileScreen extends React.Component {
                     placeholder='phone'
                     rightIcon={{ type: 'font-awesome', name: 'phone' }}
                 />
-              </View>
+            </View>
             <Button
                 onPress={() => {
                 }}

@@ -6,7 +6,10 @@ import {setDistanceFromMe,
         setShowFilter,
         setShowDrivers,
         setShowChat,
-        setDriver} from '../../../redux/menu/home/actions';
+        setDriver,
+        setLatitude,
+        setLongitude,
+        setShowContract} from '../../../redux/menu/home/actions';
 import HomeScreen from './HomeScreen';
 
 class HomeContainer extends React.Component{
@@ -22,6 +25,11 @@ class HomeContainer extends React.Component{
                 showChat={this.props.showChat}
                 drivers={this.props.drivers}
                 driver={this.props.driver}
+                latitude={this.props.latitude}
+                longitude={this.props.longitude}
+                myLatitude={this.props.myLatitude}
+                myLongitude={this.props.myLongitude}
+                showContract={this.props.showContract}
                 setDistanceFromMe={this.props.setDistanceFromMe}
                 setSelectedCars={this.props.setSelectedCars}
                 setShowDriver={this.props.setShowDriver}
@@ -29,6 +37,9 @@ class HomeContainer extends React.Component{
                 setShowDrivers={this.props.setShowDrivers}
                 setShowChat={this.props.setShowChat}
                 setDriver={this.props.setDriver}
+                setLatitude={this.props.setLatitude}
+                setLongitude={this.props.setLongitude}
+                setShowContract={this.props.setShowContract}
             />
         );
     }
@@ -43,7 +54,12 @@ const mapStateToProps = state => {
         showDrivers: state.map.showDrivers,
         showChat: state.map.showChat,
         drivers: state.map.drivers,
-        driver: state.map.driver
+        driver: state.map.driver,
+        latitude: state.map.latitude,
+        longitude: state.map.longitude,
+        myLatitude: state.map.myLatitude,
+        myLongitude: state.map.myLongitude,
+        showContract: state.map.showContract
     }
 }
 
@@ -54,7 +70,10 @@ const mapDispatchToProps = {
     setShowFilter,
     setShowDrivers,
     setShowChat,
-    setDriver
+    setDriver,
+    setLatitude,
+    setLongitude,
+    setShowContract
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

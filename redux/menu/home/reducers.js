@@ -5,7 +5,10 @@ import {
     CHANGE_SHOW_FILTER,
     CHANGE_SHOW_DRIVERS,
     CHANGE_SHOW_CHAT,
-    CHANGE_DRIVER
+    CHANGE_DRIVER,
+    CHANGE_LATITUDE,
+    CHANGE_LONGITUDE,
+    CHANGE_SHOW_CONTRACT
 } from './actions';
 
 const defaultState = {
@@ -25,6 +28,11 @@ const defaultState = {
         }
     ],
     driver: null,
+    latitude: 50.5092579,
+    longitude: 30.4979999,
+    myLatitude: 50.5003828,
+    myLongitude: 30.4976448,
+    showContract: true
 }
 
 export const mapReducer = (state = defaultState, action) => {
@@ -64,6 +72,21 @@ export const mapReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 driver: action.payload
+            }
+        case CHANGE_LATITUDE:
+            return {
+                ...state,
+                latitude: action.payload,
+            }
+        case CHANGE_LONGITUDE:
+            return {
+                ...state,
+                longitude: action.payload
+            }
+        case CHANGE_SHOW_CONTRACT:
+            return {
+                ...state,
+                showContract: action.payload
             }
     }
     return state;

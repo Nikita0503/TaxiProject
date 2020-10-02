@@ -18,8 +18,6 @@ export default class HomeScreen extends React.Component {
   
   state = {
     fadeAnim: new Animated.Value(0),
-    latitude: 50.5092579,
-    longitude: 30.4979999
   }
 
   closeChat = () => this.props.setShowChat(false)
@@ -39,8 +37,15 @@ export default class HomeScreen extends React.Component {
   };
 
   drow = () => {
-    let timerId = setInterval(() => this.setState({latitude: this.state.latitude - 0.00005, longitude: this.state.longitude - 0.000001}), 100);
-    setTimeout(() => { clearInterval(timerId);}, 20000);
+    let timerId = setInterval(() => {
+      //this.setState({latitude: this.props.latitude - 0.000025, longitude: this.props.longitude - 0.000001})
+      this.props.setLatitude(this.props.latitude - 0.000025)
+      this.props.setLongitude(this.props.longitude - 0.000001)
+    }, 100);
+    setTimeout(() => { 
+      clearInterval(timerId);
+      this.props.setShowContract(true)
+    }, 40000);
   }
 
   render(){
@@ -51,12 +56,13 @@ export default class HomeScreen extends React.Component {
             height: '100%',
             width: '100%'}}
           region={{
-            latitude: this.state.latitude,//50.5071379,
-            longitude: this.state.longitude,//30.4973214,
+            latitude: this.props.latitude,//50.5071379,
+            longitude: this.props.longitude,//30.4973214,
             latitudeDelta: 0.015,
             longitudeDelta: 0.0121,
           }}>
-          <Marker coordinate={{ latitude: this.state.latitude, longitude: this.state.longitude }}/>
+            <Marker coordinate={{ latitude: this.props.latitude, longitude: this.props.longitude }}/>
+            <Marker coordinate={{ latitude: this.props.myLatitude, longitude: this.props.myLongitude }} pinColor="blue"/>
         </MapView>
         <View style={{width: '100%'}}>
           <TouchableOpacity onPress={() => {
@@ -99,6 +105,7 @@ export default class HomeScreen extends React.Component {
         {this.getOverlayFilter()}
         {this.getOverlayChat()}
         {this.getOverlaySelectedDriver()}
+        {this.getOverlayContract()}
       </View>
       
     );
@@ -387,6 +394,83 @@ export default class HomeScreen extends React.Component {
         </View>
       </Overlay>
       )
+  }
+
+  getOverlayContract(){
+    return(
+      <Overlay overlayStyle={{ width: '90%'}} isVisible={this.props.showContract}>
+        <ScrollView>
+          <View style={{flexDirection: 'row'}}>
+          <View style={{width: '35%'}}>
+            <Image
+                style={{width: 100, height: 100, borderRadius: 100}}
+                source={{
+                    uri:
+                    'https://radiopotok.ru/f/i/2019/8/5/825_1565023537-f6d62a.jpg',
+                }}
+            />
+          </View>
+          <View style={{width: '55%'}}>
+              <View style={{marginLeft: 0}}>
+                  <Text style={{fontSize: 20}}>Clava Coca</Text>
+                  <Text style={{fontSize: 14, color: '#f0f0f0'}}>BMW x7</Text>
+              </View>
+              <View style={{marginTop: 12, flexDirection: 'row',}}>
+                  <View style={{width: '50%'}}>
+                      <Text style={{fontSize: 24, color: 'green'}}>3 $</Text>
+                      <Text>per km</Text>
+                  </View>
+                  <View style={{width: '50%', alignItems: 'center'}}>
+                      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                          <Text style={{fontSize: 24}}>4.7</Text>
+                          <Icon
+                              size={24}
+                              name='star'
+                              type='entypo'
+                              color='yellow' />
+                      </View>
+                      <Text>rating</Text>
+                  </View>
+              </View>
+            </View>
+          </View>
+          <View style={{alignItems: 'center', marginTop: 20}}>
+            <Text style={{fontSize: 20}}>SP "Metropolis"</Text>
+            <Icon
+                size={24}
+                name='arrowdown'
+                type='ant-design'
+                color='red' />
+            <Text style={{fontSize: 20}}>McDonald's</Text>
+          </View>
+          <View style={{flexDirection: 'row', marginTop: 20, alignItems: 'center', justifyContent: 'space-around'}}>
+              <Card style={{width: '40%', height: 120, alignItems: 'center', borderRadius: 150, justifyContent: 'center'}}>
+                <Text style={{fontSize: 36, color: 'green'}}>43 $</Text>
+                <Text>for the way</Text>
+              </Card>
+              <View><Text style={{fontSize: 20}}>+</Text></View>
+              <Card style={{width: '40%', height: 120, alignItems: 'center', borderRadius: 150, justifyContent: 'center'}}>
+                <Text style={{fontSize: 36, color: 'green'}}>16 $</Text>
+                <Text>for additional</Text>
+              </Card>
+          </View>
+          <View style={{alignItems: 'flex-end', marginRight: 10}}>
+            <Text style={{fontSize: 24}}>= 59$</Text>
+          </View>
+          <View>
+
+          </View>
+        </ScrollView>
+        <View style={{width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}}>
+          <Button style={{width: '50%'}} title="BACK" onPress={() => {
+            this.props.setShowContract(false)
+          }} />
+          <Button style={{width: '50%'}} title="CALL" onPress={() => {
+            this.props.setShowContract(false)
+          }} />
+        </View>
+      </Overlay>
+    )
   }
 };
 

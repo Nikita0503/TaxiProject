@@ -5,6 +5,9 @@ export const CHANGE_SHOW_FILTER = 'CHANGE_SHOW_FILTER';
 export const CHANGE_SHOW_DRIVERS = 'CHANGE_SHOW_DRIVERS';
 export const CHANGE_SHOW_CHAT = 'CHANGE_SHOW_CHAT';
 export const CHANGE_DRIVER = 'CHANGE_DRIVER';
+export const CHANGE_LATITUDE = 'CHANGE_LATITUDE';
+export const CHANGE_LONGITUDE = 'CHANGE_LONGITUDE';
+export const CHANGE_SHOW_CONTRACT = 'CHANGE_SHOW_CONTRACT';
 
 export const setDistanceFromMe = distanceFromMe => ({
     type: CHANGE_DISTANCE_FROM_ME,
@@ -39,4 +42,19 @@ export const setShowChat = showChat => ({
 export const setDriver = driver => ({
     type: CHANGE_DRIVER,
     payload: driver
+});
+
+export const setLatitude = latitude => ({
+    type: CHANGE_LATITUDE,
+    payload: latitude
+});
+
+export const setLongitude = longitude => ({
+    type: CHANGE_LONGITUDE,
+    payload: longitude
+});
+
+export const setShowContract = showContract => ({
+    type: CHANGE_SHOW_CONTRACT,
+    payload: showContract
 })

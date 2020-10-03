@@ -45,7 +45,7 @@ export default class HomeScreen extends React.Component {
     setTimeout(() => { 
       clearInterval(timerId);
       this.props.setShowContract(true)
-    }, 4000);
+    }, 40000);
   }
 
   rideToMcDonalds = () => {
@@ -76,7 +76,7 @@ export default class HomeScreen extends React.Component {
           sum: 59
         }
       )
-    }, 4000);
+    }, 40000);
 
   }
 
@@ -127,6 +127,7 @@ export default class HomeScreen extends React.Component {
                 rate={item.rate}
                 onPress={() => {
                   this.props.setShowDriver(true)
+                  this.props.setCurrentDriver(item)
                 }} 
               />}
               keyExtractor={item => item.id}
@@ -323,7 +324,7 @@ export default class HomeScreen extends React.Component {
   getOverlayChat(){
     return(
       <Overlay overlayStyle={{width: '100%', height: '100%'}} isVisible={this.props.showChat}>
-        <Chat name={this.props.driver} closeChat={this.closeChat}/>
+        <Chat name={this.props.driver != null ? this.props.driver.name : ''} closeChat={this.closeChat}/>
       </Overlay>
     )
   }
@@ -339,15 +340,15 @@ export default class HomeScreen extends React.Component {
               rounded
               source={{
                   uri:
-                  'https://mp3safe.ru/uploads/thumbs/b9efc2b96-1.jpg',
+                  this.props.currentDriver != null ? this.props.currentDriver.avatar : '',
               }}
             />
-            <Text style={{fontSize: 24}}>Clava Coca</Text>
+            <Text style={{fontSize: 24}}>{this.props.currentDriver != null ? this.props.currentDriver.name : ''}</Text>
           </View>
           <View style={{flexDirection: 'row', marginTop: 5, paddingVertical: 10}}>
             <View style={{width: '50%', alignItems: 'center'}}>
               <Text>Rating:</Text>
-              <Text style={{color: 'yellow', fontSize: 60}}>4.7</Text>
+              <Text style={{color: 'yellow', fontSize: 60}}>{this.props.currentDriver != null ? this.props.currentDriver.rating : ''}</Text>
             </View>
             <View style={{width: '50%', alignItems: 'center'}}>
               <Text>Car class:</Text>
@@ -362,18 +363,18 @@ export default class HomeScreen extends React.Component {
           <Image
             style={{height: 220, borderRadius: 5, resizeMode: 'contain'}}
             source={{
-              uri: 'https://mfair.ua/user/cars/52494/52494-noviy-oficial-bmw-x7-m-50-d-kiev-2019-19.jpg',
+              uri: this.props.currentDriver != null ? this.props.currentDriver.carAvatar : '',
           }}/>
         </Card>
 
         <Card style={{flexDirection: 'row', paddingVertical: 10}}>
           <View style={{width: '50%', alignItems: 'center'}}>
             <Text>distance to you:</Text>
-            <Text style={{fontSize: 35, color: '#C0C0C0', marginTop: 5}}>356 m</Text>
+            <Text style={{fontSize: 35, color: '#C0C0C0', marginTop: 5}}>{this.props.currentDriver != null ? this.props.currentDriver.distance : ''} m</Text>
           </View>
           <View style={{width: '50%', alignItems: 'center'}}>
             <Text>Rate:</Text>
-            <Text style={{fontSize: 35, color: '#808080', marginTop: 5}}>4 $/km</Text>
+            <Text style={{fontSize: 35, color: '#808080', marginTop: 5}}>{this.props.currentDriver != null ? this.props.currentDriver.rate : ''} $/km</Text>
           </View>
         </Card>
 
@@ -417,11 +418,11 @@ export default class HomeScreen extends React.Component {
             this.props.setShowDriver(false)
           }} />
           <Button style={{width: '50%'}} title="CALL" onPress={() => {
-            this.props.setDriver("Clava Coca");
+            this.props.setDriver(this.props.currentDriver);
             this.props.setShowDrivers(false);
             this.props.setShowDriver(false);
-            this.rideToMe()
-            this.hileDrivers()
+            this.rideToMe();
+            this.hileDrivers();
           }} />
         </View>
       </Overlay>
@@ -438,23 +439,23 @@ export default class HomeScreen extends React.Component {
                 style={{width: 100, height: 100, borderRadius: 100}}
                 source={{
                     uri:
-                    'https://radiopotok.ru/f/i/2019/8/5/825_1565023537-f6d62a.jpg',
+                    this.props.currentDriver != null ? this.props.currentDriver.avatar : '',
                 }}
             />
           </View>
           <View style={{width: '55%'}}>
               <View style={{marginLeft: 0}}>
-                  <Text style={{fontSize: 20}}>Clava Coca</Text>
-                  <Text style={{fontSize: 14, color: '#f0f0f0'}}>BMW x7</Text>
+                  <Text style={{fontSize: 20}}>{this.props.currentDriver != null ? this.props.currentDriver.name : ''}</Text>
+                  <Text style={{fontSize: 14, color: '#f0f0f0'}}>{this.props.currentDriver != null ? this.props.currentDriver.car : ''}</Text>
               </View>
               <View style={{marginTop: 12, flexDirection: 'row',}}>
                   <View style={{width: '50%'}}>
-                      <Text style={{fontSize: 24, color: 'green'}}>3 $</Text>
+                      <Text style={{fontSize: 24, color: 'green'}}>{this.props.currentDriver != null ? this.props.currentDriver.rate : ''} $</Text>
                       <Text>per km</Text>
                   </View>
                   <View style={{width: '50%', alignItems: 'center'}}>
                       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                          <Text style={{fontSize: 24}}>4.7</Text>
+                          <Text style={{fontSize: 24}}>{this.props.currentDriver != null ? this.props.currentDriver.rating : ''}</Text>
                           <Icon
                               size={24}
                               name='star'

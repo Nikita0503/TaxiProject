@@ -10,6 +10,7 @@ export const CHANGE_LONGITUDE = 'CHANGE_LONGITUDE';
 export const CHANGE_SHOW_CONTRACT = 'CHANGE_SHOW_CONTRACT';
 export const CHANGE_MY_LATITUDE = 'CHANGE_MY_LATITUDE';
 export const CHANGE_MY_LONGITUDE = 'CHANGE_MY_LONGITUDE';
+export const CHANGE_CURRENT_DRIVER = 'CHANGE_CURRENT_DRIVER';
 
 export const setDistanceFromMe = distanceFromMe => ({
     type: CHANGE_DISTANCE_FROM_ME,
@@ -70,3 +71,8 @@ export const setMyLongitude = longitude => ({
     type: CHANGE_MY_LONGITUDE,
     payload: longitude
 });
+
+export const setCurrentDriver = currentDriver => ({
+    type: CHANGE_CURRENT_DRIVER,
+    payload: currentDriver
+})

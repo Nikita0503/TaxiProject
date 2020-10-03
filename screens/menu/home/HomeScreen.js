@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, Platform, StyleSheet, Button, KeyboardAvoidingView,
-  FlatList, Animated, Image, TouchableOpacity, ScrollView } from 'react-native';
+  FlatList, Animated, Image, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { Fab, Card } from 'native-base';
 import { Overlay, Slider, AirbnbRating, Input, Icon, Avatar } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
@@ -36,7 +36,7 @@ export default class HomeScreen extends React.Component {
     }).start();
   };
 
-  drow = () => {
+  rideToMe = () => {
     let timerId = setInterval(() => {
       //this.setState({latitude: this.props.latitude - 0.000025, longitude: this.props.longitude - 0.000001})
       this.props.setLatitude(this.props.latitude - 0.000025)
@@ -45,7 +45,39 @@ export default class HomeScreen extends React.Component {
     setTimeout(() => { 
       clearInterval(timerId);
       this.props.setShowContract(true)
-    }, 40000);
+    }, 4000);
+  }
+
+  rideToMcDonalds = () => {
+    let timerId = setInterval(() => {
+      //this.setState({latitude: this.props.latitude - 0.000025, longitude: this.props.longitude - 0.000001})
+      this.props.setLatitude(this.props.latitude + 0.000025)
+      this.props.setLongitude(this.props.longitude + 0.000001)
+      this.props.setMyLatitude(this.props.latitude);
+      this.props.setMyLongitude(this.props.longitude);
+    }, 100);
+    setTimeout(() => { 
+      clearInterval(timerId);
+      Alert.alert(
+        "Arrived",
+        "You can pay for the trip on the 'payments' tab",
+        [
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ],
+        { cancelable: false }
+      );
+      this.props.addCheck(
+        {
+          id: this.props.checks.length + 1,
+          name: 'Clava Coca',
+          avatar: 'https://radiopotok.ru/f/i/2019/8/5/825_1565023537-f6d62a.jpg',
+          car: 'BMW x7',
+          drove: 6,
+          sum: 59
+        }
+      )
+    }, 4000);
+
   }
 
   render(){
@@ -75,7 +107,7 @@ export default class HomeScreen extends React.Component {
               }
             }}>
             <View style={{flexDirection: 'row', justifyContent: 'center', marginVertical: 2}}>
-              <Text style={{marginEnd: 10}}>4 drivers near you</Text>
+              <Text style={{marginEnd: 10}}>{this.props.drivers.length} drivers near you</Text>
               <Icon 
                 size={20}
                 name={this.props.showDrivers ? "down" : "up"}
@@ -388,7 +420,7 @@ export default class HomeScreen extends React.Component {
             this.props.setDriver("Clava Coca");
             this.props.setShowDrivers(false);
             this.props.setShowDriver(false);
-            this.drow()
+            this.rideToMe()
             this.hileDrivers()
           }} />
         </View>
@@ -465,8 +497,9 @@ export default class HomeScreen extends React.Component {
           <Button style={{width: '50%'}} title="BACK" onPress={() => {
             this.props.setShowContract(false)
           }} />
-          <Button style={{width: '50%'}} title="CALL" onPress={() => {
+          <Button style={{width: '50%'}} title="RIDE" onPress={() => {
             this.props.setShowContract(false)
+            this.rideToMcDonalds()
           }} />
         </View>
       </Overlay>

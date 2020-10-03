@@ -7,6 +7,7 @@ export const CARD_HOLDER_NAME_CHANGE = 'CARD_HOLDER_NAME_CHANGE';
 export const CVV_CHANGE = 'CVV_CHANGE';
 export const SELECT_CARD = 'SELECT_CARD';
 export const PAY = 'PAY';
+export const ADD_CHECK = 'ADD_CHECK';
 
 export const addCard = card => ({
     type: ADD_CARD,
@@ -51,4 +52,9 @@ export const selectCard = (card) => ({
 export const pay = (sum) => ({
     type: PAY,
     payload: sum
-})
+});
+
+export const addCheck = (check) => ({
+    type: ADD_CHECK,
+    payload: check
+});

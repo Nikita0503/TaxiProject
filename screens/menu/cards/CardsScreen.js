@@ -202,11 +202,13 @@ export default class CardsScreen extends React.Component {
                         drove={item.drove}
                         sum={item.sum}
                         pay={this.props.pay}
+                        addNewTrip={this.props.addNewTrip}
                     />}
                 keyExtractor={item => item.id}
             />
         )
     }
+
   }
   
   const Check = (props) =>
@@ -222,8 +224,8 @@ export default class CardsScreen extends React.Component {
                            props.avatar,
                        }}
                    />
-                   <View>
-                       <Text style={{fontSize: 18,  textAlign: 'right'}}>{props.name}</Text>
+                   <View style={{width: '55%'}}>
+                        <Text style={{fontSize: 16,  textAlign: 'right'}}>{props.name}</Text>
                         <Text style={{fontSize: 12, color: '#f0f0f0', textAlign: 'right'}}>{props.car}</Text>
                    </View>
                </View>
@@ -250,6 +252,16 @@ export default class CardsScreen extends React.Component {
                    style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}
                    onPress={() => {
                        props.pay(props)
+                       props.addNewTrip({
+                           time: '1:33',
+                           distance: '2,1 km',
+                           spent: props.sum,
+                           from: "SP 'Metropolis'",
+                           to: "McDonald's",
+                           car: props.car,
+                           avatar: props.avatar,
+                           rating: 4.7
+                       })
                    }}>
                    <Text style={{fontSize: 30}}>Pay</Text>
                </TouchableOpacity>

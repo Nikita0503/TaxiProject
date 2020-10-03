@@ -9,6 +9,7 @@ import {showCardBankChange,
         cvvChange,
         selectCard,
         pay} from '../../../redux/menu/cards/actions';
+import {addNewTrip} from '../../../redux/menu/history/actions'
 import CardsScreen from './CardsScreen';
 
 class CardsContainer extends React.Component {
@@ -34,6 +35,7 @@ class CardsContainer extends React.Component {
                 cvvChange={this.props.cvvChange}
                 selectCard={this.props.selectCard}
                 pay={this.props.pay}
+                addNewTrip={this.props.addNewTrip}
             />
         );
     }
@@ -62,7 +64,8 @@ const mapDispatchToProps = {
     cardHolderNameChange,
     cvvChange,
     selectCard,
-    pay
+    pay,
+    addNewTrip
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardsContainer);

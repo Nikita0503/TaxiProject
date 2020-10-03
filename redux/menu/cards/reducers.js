@@ -7,7 +7,8 @@ import {
     CARD_HOLDER_NAME_CHANGE,
     CVV_CHANGE,
     SELECT_CARD,
-    PAY
+    PAY,
+    ADD_CHECK
 } from './actions';
 
 const defaultState = {
@@ -68,26 +69,27 @@ const defaultState = {
     checks: [
         {
             id: 1,
-            name: 'Clava Coca',
+            name: 'Ivan Ivanov',
             avatar: 'https://radiopotok.ru/f/i/2019/8/5/825_1565023537-f6d62a.jpg',
             car: 'BMW x7',
-            drove: 25,
+            drove: 8,
             sum: 15
         },
         {
             id: 2,
-            name: 'Clava Coca2',
+            name: 'Mark McMan',
             avatar: 'https://radiopotok.ru/f/i/2019/8/5/825_1565023537-f6d62a.jpg',
             car: 'BMW x7',
-            drove: 25,
-            sum: 76
-        },{
+            drove: 31,
+            sum: 176
+        },
+        {
             id: 3,
-            name: 'Clava Coca3',
+            name: 'Shakal',
             avatar: 'https://radiopotok.ru/f/i/2019/8/5/825_1565023537-f6d62a.jpg',
             car: 'BMW x7',
             drove: 25,
-            sum: 22
+            sum: 21
         }
     ]
 }
@@ -151,6 +153,11 @@ export const cardsReducer = (state = defaultState, action) => {
                         return true
                     }
                 })
+            }
+        case ADD_CHECK:
+            return {
+                ...state,
+                checks: [...state.checks, action.payload]
             }
     }
     return state;

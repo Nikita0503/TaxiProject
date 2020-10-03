@@ -7,7 +7,7 @@ const defaultState = {
         {
           time: '2:54',
           distance: '1,7 km',
-          spent: '9$',
+          spent: 9,
           from: 'Kiev Zhulyany International Airport',
           to: 'Kiev Cinema',
           car: 'BMW x7',
@@ -17,7 +17,7 @@ const defaultState = {
         {
           time: '4:32',
           distance: '3,4 km',
-          spent: '17$',
+          spent: 17,
           from: 'S&T UKRAINE',
           to: 'Church of St. Triytsi OCU',
           car: 'Mazda RX 8',
@@ -27,7 +27,7 @@ const defaultState = {
         {
           time: '10:12',
           distance: '5,4 km',
-          spent: '35$',
+          spent: 35,
           from: 'Nova Poshta №293',
           to: 'Fairs "Naumova-Pidlisna"',
           car: 'Ferrari 812',
@@ -37,7 +37,7 @@ const defaultState = {
         {
           time: '5:59',
           distance: '4,1 km',
-          spent: '31$',
+          spent: 31,
           from: "McDonald's",
           to: 'In-Time',
           car: 'Dodge',
@@ -47,7 +47,7 @@ const defaultState = {
         {
           time: '6:37',
           distance: '4,2 km',
-          spent: '41$',
+          spent: 41,
           from: 'Cipolla Rossa',
           to: 'GOLDEN FLORA',
           car: 'Lexus LS',
@@ -61,9 +61,10 @@ export const historyReducer = (state = defaultState, action) => {
     
     switch (action.type){
         case ADD_NEW_TRIP:
+            let tripsArray = [action.payload]
             return {
                 ...state,
-                trips: [...state.trips, action.payload],
+                trips: tripsArray.concat(state.trips),
             }
     }
     return state;

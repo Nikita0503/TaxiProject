@@ -104,7 +104,7 @@ class Item extends React.Component {
                             </View>
                             <View style={{width: '30%', alignItems: 'center'}}>
                                 <Text>Spent:</Text>
-                                <Text style={{fontSize: 20}}>{this.props.spent}</Text>
+                                <Text style={{fontSize: 20}}>{this.props.spent} $</Text>
                             </View>
                         </View>
                         <Animated.View style={{opacity: this.state.subItemOpacity, width: '100%', marginTop: 10, height: this.state.subItemHeight, backgroundColor: '#f0f0f0', flexDirection: 'row', }}>

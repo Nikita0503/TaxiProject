@@ -8,7 +8,10 @@ import {
     CHANGE_DRIVER,
     CHANGE_LATITUDE,
     CHANGE_LONGITUDE,
-    CHANGE_SHOW_CONTRACT
+    CHANGE_SHOW_CONTRACT,
+    CHANGE_SHOW_RATE,
+    CHANGE_MY_LATITUDE,
+    CHANGE_MY_LONGITUDE
 } from './actions';
 
 const defaultState = {
@@ -25,6 +28,13 @@ const defaultState = {
             name: 'Clava Coca',
             distance: 567,
             rate: 3
+        },
+        {
+            id: 2,
+            avatar: 'https://cdnimg.rg.ru/i/gallery/3a6ff2bf/3_c66971e5.jpg',
+            name: 'Margot Robbie',
+            distance: 567,
+            rate: 3
         }
     ],
     driver: null,
@@ -32,7 +42,7 @@ const defaultState = {
     longitude: 30.4979999,
     myLatitude: 50.5003828,
     myLongitude: 30.4976448,
-    showContract: true
+    showContract: false,
 }
 
 export const mapReducer = (state = defaultState, action) => {
@@ -87,6 +97,16 @@ export const mapReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 showContract: action.payload
+            }
+        case CHANGE_MY_LATITUDE:
+            return {
+                ...state,
+                myLatitude: action.payload
+            }
+        case CHANGE_MY_LONGITUDE:
+            return {
+                ...state,
+                myLongitude: action.payload
             }
     }
     return state;

@@ -9,7 +9,10 @@ import {setDistanceFromMe,
         setDriver,
         setLatitude,
         setLongitude,
-        setShowContract} from '../../../redux/menu/home/actions';
+        setShowContract,
+        setMyLatitude,
+        setMyLongitude} from '../../../redux/menu/home/actions';
+import {addCheck} from '../../../redux/menu/cards/actions';
 import HomeScreen from './HomeScreen';
 
 class HomeContainer extends React.Component{
@@ -30,6 +33,7 @@ class HomeContainer extends React.Component{
                 myLatitude={this.props.myLatitude}
                 myLongitude={this.props.myLongitude}
                 showContract={this.props.showContract}
+                checks={this.props.checks}
                 setDistanceFromMe={this.props.setDistanceFromMe}
                 setSelectedCars={this.props.setSelectedCars}
                 setShowDriver={this.props.setShowDriver}
@@ -40,6 +44,9 @@ class HomeContainer extends React.Component{
                 setLatitude={this.props.setLatitude}
                 setLongitude={this.props.setLongitude}
                 setShowContract={this.props.setShowContract}
+                setMyLatitude={this.props.setMyLatitude}
+                setMyLongitude={this.props.setMyLongitude}
+                addCheck={this.props.addCheck}
             />
         );
     }
@@ -59,7 +66,8 @@ const mapStateToProps = state => {
         longitude: state.map.longitude,
         myLatitude: state.map.myLatitude,
         myLongitude: state.map.myLongitude,
-        showContract: state.map.showContract
+        showContract: state.map.showContract,
+        checks: state.cards.checks
     }
 }
 
@@ -73,7 +81,10 @@ const mapDispatchToProps = {
     setDriver,
     setLatitude,
     setLongitude,
-    setShowContract
+    setShowContract,
+    setMyLatitude,
+    setMyLongitude,
+    addCheck
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

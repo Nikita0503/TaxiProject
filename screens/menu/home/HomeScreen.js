@@ -268,9 +268,10 @@ export default class HomeScreen extends React.Component {
             <Text>I wanna driver with that rating or more than:</Text>
             <AirbnbRating
               count={5}
+              value={this.props.minRating}
               reviews={["Bad", "OK", "Good", "Very Good", "Amazing"]}
-              defaultRating={4}
               size={50}
+              onFinishRating={(rating) => this.props.setMinRating(rating)}
             />
           </View>
           <View style={{marginTop: 30}}>
@@ -278,6 +279,8 @@ export default class HomeScreen extends React.Component {
             <Text>Rate should be:</Text>
             <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 5}}>
               <Input 
+                value={this.props.priceFrom}
+                onChangeText={(text) => this.props.setPriceFrom(text)}
                 keyboardType="numeric"
                 rightIcon={
                   <Icon
@@ -288,6 +291,8 @@ export default class HomeScreen extends React.Component {
                 }
               inputStyle={{textAlign: 'center'}} containerStyle={{width: '40%'}} placeholder='FROM'/>
               <Input 
+                value={this.props.priceTo}
+                onChangeText={(text) => {this.props.setPriceTo(text)}}
                 keyboardType="numeric"
                 rightIcon={
                   <Icon

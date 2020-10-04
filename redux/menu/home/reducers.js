@@ -18,6 +18,9 @@ import {
 const defaultState = {
     distanceFromMe: 5,
     selectedCars: [true, true, true, true, true],
+    minRating: 4,
+    priceFrom: null,
+    priceTo: null,
     showDriver: false,
     showFilter: false,
     showDrivers: false,

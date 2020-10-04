@@ -11,6 +11,9 @@ export const CHANGE_SHOW_CONTRACT = 'CHANGE_SHOW_CONTRACT';
 export const CHANGE_MY_LATITUDE = 'CHANGE_MY_LATITUDE';
 export const CHANGE_MY_LONGITUDE = 'CHANGE_MY_LONGITUDE';
 export const CHANGE_CURRENT_DRIVER = 'CHANGE_CURRENT_DRIVER';
+export const CHANGE_MIN_RATING = 'CHANGE_MIN_RATING';
+export const CHANGE_PRICE_FROM = 'CHANGE_PRICE_FROM';
+export const CHANGE_PRICE_TO = 'CHANGE_PRICE_TO';
 
 export const setDistanceFromMe = distanceFromMe => ({
     type: CHANGE_DISTANCE_FROM_ME,
@@ -75,4 +78,19 @@ export const setMyLongitude = longitude => ({
 export const setCurrentDriver = currentDriver => ({
     type: CHANGE_CURRENT_DRIVER,
     payload: currentDriver
-})
+});
+
+export const setMinRating = minRating => ({
+    type: CHANGE_MIN_RATING,
+    payload: minRating
+});
+
+export const setPriceFrom = priceFrom => ({
+    type: CHANGE_PRICE_FROM,
+    payload: priceFrom
+});
+
+export const setPriceTo = priceTo => ({
+    type: CHANGE_PRICE_TO,
+    payload: priceTo
+});

@@ -12,7 +12,10 @@ import {setDistanceFromMe,
         setShowContract,
         setMyLatitude,
         setMyLongitude,
-        setCurrentDriver} from '../../../redux/menu/home/actions';
+        setCurrentDriver,
+        setMinRating,
+        setPriceFrom,
+        setPriceTo} from '../../../redux/menu/home/actions';
 import {addCheck} from '../../../redux/menu/cards/actions';
 import HomeScreen from './HomeScreen';
 
@@ -36,6 +39,9 @@ class HomeContainer extends React.Component{
                 showContract={this.props.showContract}
                 checks={this.props.checks}
                 currentDriver={this.props.currentDriver}
+                minRating={this.props.minRating}
+                priceFrom={this.props.priceFrom}
+                priceTo={this.props.priceTo}
                 setDistanceFromMe={this.props.setDistanceFromMe}
                 setSelectedCars={this.props.setSelectedCars}
                 setShowDriver={this.props.setShowDriver}
@@ -50,6 +56,9 @@ class HomeContainer extends React.Component{
                 setMyLongitude={this.props.setMyLongitude}
                 addCheck={this.props.addCheck}
                 setCurrentDriver={this.props.setCurrentDriver}
+                setMinRating={this.props.setMinRating}
+                setPriceFrom={this.props.setPriceFrom}
+                setPriceTo={this.props.setPriceTo}
             />
         );
     }
@@ -71,7 +80,10 @@ const mapStateToProps = state => {
         myLongitude: state.map.myLongitude,
         showContract: state.map.showContract,
         checks: state.cards.checks,
-        currentDriver: state.map.currentDriver
+        currentDriver: state.map.currentDriver,
+        minRating: state.map.minRating,
+        priceFrom: state.map.priceFrom,
+        priceTo: state.map.priceTo
     }
 }
 
@@ -89,7 +101,10 @@ const mapDispatchToProps = {
     setMyLatitude,
     setMyLongitude,
     addCheck,
-    setCurrentDriver
+    setCurrentDriver,
+    setMinRating,
+    setPriceFrom,
+    setPriceTo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

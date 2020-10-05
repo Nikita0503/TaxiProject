@@ -69,9 +69,9 @@ export default class HomeScreen extends React.Component {
       this.props.addCheck(
         {
           id: this.props.checks.length + 1,
-          name: 'Clava Coca',
-          avatar: 'https://radiopotok.ru/f/i/2019/8/5/825_1565023537-f6d62a.jpg',
-          car: 'BMW x7',
+          name: this.props.driver.name,
+          avatar: this.props.driver.avatar,
+          car: this.props.driver.car,
           drove: 6,
           sum: 59
         }
@@ -107,7 +107,7 @@ export default class HomeScreen extends React.Component {
               }
             }}>
             <View style={{flexDirection: 'row', justifyContent: 'center', marginVertical: 2}}>
-              <Text style={{marginEnd: 10}}>{this.props.drivers.length} drivers near you</Text>
+              <Text style={{marginEnd: 10}}>{this.getDrivers().length} drivers near you</Text>
               <Icon 
                 size={20}
                 name={this.props.showDrivers ? "down" : "up"}
@@ -118,7 +118,7 @@ export default class HomeScreen extends React.Component {
           </TouchableOpacity>
           <Animated.FlatList
             style={{width: '100%', height: this.state.fadeAnim, }}
-            data={this.props.drivers}
+            data={this.getDrivers()}
             renderItem={({ item }) => 
               <Driver 
                 name={item.name}
@@ -142,6 +142,28 @@ export default class HomeScreen extends React.Component {
       </View>
       
     );
+  }
+
+  getDrivers(){
+    let drivers = [];
+    for(var i = 0; i < this.props.drivers.length; i++){
+      var correct = true;
+      if(this.props.priceFrom != null && this.props.priceFrom != ''){
+        if(this.props.priceFrom > this.props.drivers[i].rate){
+          correct = false;
+        }  
+      }
+      if(this.props.priceTo != null && this.props.priceTo != ''){
+        if(this.props.priceTo < this.props.drivers[i].rate){
+          correct = false;
+        }
+      }
+      if(this.props.minRating > this.props.drivers[i].rating){
+        correct = false
+      }
+      if(correct) drivers.push(this.props.drivers[i])
+    }
+    return drivers
   }
 
   getFilterFAB(){
@@ -268,7 +290,7 @@ export default class HomeScreen extends React.Component {
             <Text>I wanna driver with that rating or more than:</Text>
             <AirbnbRating
               count={5}
-              value={this.props.minRating}
+              defaultRating={this.props.minRating}
               reviews={["Bad", "OK", "Good", "Very Good", "Amazing"]}
               size={50}
               onFinishRating={(rating) => this.props.setMinRating(rating)}

@@ -12,7 +12,10 @@ import {
     CHANGE_SHOW_RATE,
     CHANGE_MY_LATITUDE,
     CHANGE_MY_LONGITUDE,
-    CHANGE_CURRENT_DRIVER
+    CHANGE_CURRENT_DRIVER,
+    CHANGE_MIN_RATING,
+    CHANGE_PRICE_FROM,
+    CHANGE_PRICE_TO
 } from './actions';
 
 const defaultState = {
@@ -34,7 +37,7 @@ const defaultState = {
             rate: 5,
             car: 'Audi Q8',
             carAvatar: 'https://www.autostat.ru/application/includes/blocks/big_photo/images/cache/000/058/006/cd4db793-670-0.jpg',
-            rating: 4.3
+            rating: 3.5
         },
         {
             id: 2,
@@ -54,7 +57,7 @@ const defaultState = {
             rate: 4,
             car: 'Mercedes-AMG GLC 43',
             carAvatar: 'https://autoreview.ru/images/Article/1573/Article_157301_860_575.jpg',
-            rating: 4.1
+            rating: 2.1
         }
     ],
     currentDriver: null,
@@ -133,6 +136,21 @@ export const mapReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 currentDriver: action.payload
+            }
+        case CHANGE_MIN_RATING:
+            return {
+                ...state,
+                minRating: action.payload
+            }
+        case CHANGE_PRICE_FROM:
+            return {
+                ...state,
+                priceFrom: action.payload
+            }
+        case CHANGE_PRICE_TO:
+            return {
+                ...state,
+                priceTo: action.payload
             }
     }
     return state;

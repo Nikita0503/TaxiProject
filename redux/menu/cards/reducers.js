@@ -69,8 +69,8 @@ const defaultState = {
     checks: [
         {
             id: 1,
-            name: 'Ivan Ivanov',
-            avatar: 'https://radiopotok.ru/f/i/2019/8/5/825_1565023537-f6d62a.jpg',
+            name: 'Danil Ivanov',
+            avatar: 'https://ss.metronews.ru/userfiles/materials/127/1274795/858x540.jpg',
             car: 'BMW x7',
             drove: 8,
             sum: 15
@@ -78,7 +78,7 @@ const defaultState = {
         {
             id: 2,
             name: 'Mark McMan',
-            avatar: 'https://radiopotok.ru/f/i/2019/8/5/825_1565023537-f6d62a.jpg',
+            avatar: 'https://images2.minutemediacdn.com/image/fetch/w_736,h_485,c_fill,g_auto,f_auto/https%3A%2F%2Fdailyddt.com%2Fwp-content%2Fuploads%2Fgetty-images%2F2017%2F07%2F1205081525-850x560.jpeg',
             car: 'BMW x7',
             drove: 31,
             sum: 176
@@ -86,7 +86,7 @@ const defaultState = {
         {
             id: 3,
             name: 'Shakal',
-            avatar: 'https://radiopotok.ru/f/i/2019/8/5/825_1565023537-f6d62a.jpg',
+            avatar: 'https://www.infox.ru/photo/13c/e0e/13ce0e4824b970d8fd71178b1c26e913asdasdasd5ee226bc1d9d53.28424698-650x433-13ce0e4824b970d8fd71178b1c26e913.jpg',
             car: 'BMW x7',
             drove: 25,
             sum: 21

@@ -19,11 +19,11 @@ export default class Driver extends React.Component {
                 />
             </View>
             <View style={{width: '55%', marginLeft: 10}}>
-                <Text style={{fontSize: 22}}>{this.props.name}</Text>
+                <Text style={{fontSize: 22, color: 'white'}}>{this.props.name}</Text>
                 <Text style={{fontSize: 14, color: '#BEBEBE'}}>{this.props.distance} m</Text>
             </View>
             <View style={{width: '35%', alignItems: 'flex-end', flexDirection: 'row'}}>
-                <Text style={{fontSize: 25}}>{this.props.rate}<Text style={{fontSize: 18}}> $/km</Text></Text>
+                <Text style={{fontSize: 25, color: 'white'}}>{this.props.rate}<Text style={{fontSize: 18, color: '#BEBEBE'}}> $/km</Text></Text>
             </View>
         </TouchableOpacity>
       );

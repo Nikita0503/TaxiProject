@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Platform, StyleSheet, Button, TouchableOpacity, KeyboardAvoidingView, Keyboard, VirtualizedList } from 'react-native';
 import { Input, Icon, Text } from 'react-native-elements';
+import LinearGradient from 'react-native-linear-gradient';
 
 export default class Chat extends React.Component {
 
@@ -27,9 +28,9 @@ export default class Chat extends React.Component {
         <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={{
             flex: 1, 
             marginTop: Platform.OS == "ios" ? 30 : 0,
-            backgroundColor: '#f0f0f0', 
             justifyContent: 'space-between'}}>
-            <View style={{width: '100%', height: 50, backgroundColor: 'white', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+            <LinearGradient colors={['#3B5998', '#293e6a', '#1d2c4c']} style={{flex: 1}}>
+            <View style={{width: '100%', height: 50, backgroundColor: '#f0f0f0', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                 <Icon 
                     onPress={() => {this.props.closeChat()}}
                     type="ant-design"
@@ -37,11 +38,11 @@ export default class Chat extends React.Component {
                     raised
                     reverse={true}
                     name='left'
-                    color='#03AC13'
+                    color='#3B5998'
                 />
-                <Text style={{fontSize: 20}}>{this.props.name}</Text>
+                <Text style={{fontSize: 20, color: '#1d2c4c'}}>{this.props.name}</Text>
             </View>
-            <View style={{width: '100%', flex: 1}}>
+            <View style={{width: '100%', flex: 1, borderRadius: 100}}>
                 <VirtualizedList
                     ref="scrollView"
                     onContentSizeChange={(width, height) => {
@@ -64,12 +65,14 @@ export default class Chat extends React.Component {
                 />
             </View>
 
-            <View style={{width: '100%', height: 60, backgroundColor: 'white', flexDirection: 'row'}}>
+            <View style={{width: '100%', height: 60, backgroundColor: '#f0f0f0', flexDirection: 'row'}}>
                 <Input 
                     containerStyle={{width: '90%'}} 
                     placeholder='Message'
                     onBlur={() => this.refs.scrollView.scrollToEnd()}
                     value={this.state.currentMessage}
+                    placeholderTextColor="#1d2c4c"
+                    inputContainerStyle={{borderBottomColor: '#1d2c4c'}}
                     onChangeText={text => {
                       this.setState({currentMessage: text})
                       this.refs.scrollView.scrollToEnd();
@@ -90,13 +93,14 @@ export default class Chat extends React.Component {
                       })    
                     }, 3000)
                   }}
-                  containerStyle={{width: '10%', justifyContent: 'center' }}
+                  containerStyle={{width: '10%', justifyContent: 'center', marginBottom: 10 }}
                   name='send'
                   type='Ionicons'
-                  size={40}
-                  color='gray'
+                  size={35}
+                  color='#1d2c4c'
                 />
             </View>
+            </LinearGradient>
         </KeyboardAvoidingView>
       );
     }
@@ -118,7 +122,7 @@ class Item extends React.Component {
         if(this.props.message != ""){
           return(
             <View>
-              <Text style={{color: "white", marginHorizontal: 10, marginVertical: 5}}>{this.props.message}</Text>
+              <Text style={{color: this.props.me ? "#0b111e" : "#B8B8B8", marginHorizontal: 10, marginVertical: 5}}>{this.props.message}</Text>
             </View>)
         }
       }
@@ -143,7 +147,7 @@ const styles = StyleSheet.create({
       marginVertical: 5,
       borderRadius: 10,
       paddingHorizontal: 5,
-      backgroundColor: 'green',
+      backgroundColor: '#17233c',
     },
     myMessageStyle: {
       maxWidth: '70%',
@@ -152,7 +156,7 @@ const styles = StyleSheet.create({
       marginVertical: 5,
       borderRadius: 10,
       paddingHorizontal: 5,
-      backgroundColor: '#3A6565',
+      backgroundColor: '#b0bcd5',
     },
 
   });

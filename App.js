@@ -27,7 +27,7 @@ const Menu = createBottomTabNavigator(
       <Icon 
         size={35}
         name="map"
-        color={focused ? 'white' : "gray"}
+        color={focused ? '#ffd700' : "#CC8400"}
         type="foundation"
       />}},
     History: {
@@ -36,7 +36,7 @@ const Menu = createBottomTabNavigator(
       <Icon 
         size={35}
         name="history"
-        color={focused ? 'white' : "gray"}
+        color={focused ? '#ffd700' : "#CC8400"}
         type="font-awesome"
       />}},
     WorkAndBalance: {
@@ -45,7 +45,7 @@ const Menu = createBottomTabNavigator(
       <Icon 
         size={35}
         name="cc-mastercard"
-        color={focused ? 'white' : "gray"}
+        color={focused ? '#ffd700' : "#CC8400"}
         type="font-awesome"
       />}},
     Profile: {
@@ -54,16 +54,16 @@ const Menu = createBottomTabNavigator(
       <Icon 
         size={35}
         name="profile"
-        color={focused ? 'white' : "gray"}
+        color={focused ? '#ffd700' : "#CC8400"}
         type="ant-design"
       />}}
   }, 
   {
   tabBarOptions: {
     showLabel: false,
-    activeBackgroundColor: '#002B2B',
-    inactiveBackgroundColor: '#002B2B',
-    activeTintColor: 'white'
+    activeBackgroundColor: '#3C4146',
+    inactiveBackgroundColor: '#3C4146',
+    activeTintColor: 'white',
   }
 })
 

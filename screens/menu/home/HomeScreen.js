@@ -5,10 +5,8 @@ import { Fab, Card } from 'native-base';
 import { Overlay, Slider, AirbnbRating, Input, Icon, Avatar } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
 import Chat from '../../../components/Chat'
-
 import Driver from '../../../components/Driver';
-
-
+import LinearGradient from 'react-native-linear-gradient';
 
 export default class HomeScreen extends React.Component {
 
@@ -96,7 +94,7 @@ export default class HomeScreen extends React.Component {
             <Marker coordinate={{ latitude: this.props.latitude, longitude: this.props.longitude }}/>
             <Marker coordinate={{ latitude: this.props.myLatitude, longitude: this.props.myLongitude }} pinColor="blue"/>
         </MapView>
-        <View style={{width: '100%'}}>
+        <LinearGradient colors={['#808080', '#3C4146', '#3C4146']} style={{width: '100%'}}>
           <TouchableOpacity onPress={() => {
               if(this.props.showDrivers){
                 this.hileDrivers();
@@ -106,18 +104,18 @@ export default class HomeScreen extends React.Component {
                 this.props.setShowDrivers(true)
               }
             }}>
-            <View style={{flexDirection: 'row', justifyContent: 'center', marginVertical: 2}}>
-              <Text style={{marginEnd: 10}}>{this.getDrivers().length} drivers near you</Text>
+            <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginVertical: 2}}>
+              <Text style={{marginEnd: 10, color: '#BEBEBE'}}>{this.getDrivers().length} drivers near you</Text>
               <Icon 
                 size={20}
                 name={this.props.showDrivers ? "down" : "up"}
-                color='#03AC13'
+                color='white'
                 type="ant-design"
               />
             </View>
           </TouchableOpacity>
           <Animated.FlatList
-            style={{width: '100%', height: this.state.fadeAnim, }}
+            style={{width: '100%', height: this.state.fadeAnim}}
             data={this.getDrivers()}
             renderItem={({ item }) => 
               <Driver 
@@ -132,7 +130,7 @@ export default class HomeScreen extends React.Component {
               />}
               keyExtractor={item => item.id}
           />
-        </View>
+        </LinearGradient>
         {this.getFilterFAB()}
         {this.getChatFAB()}
         {this.getOverlayFilter()}
@@ -172,13 +170,13 @@ export default class HomeScreen extends React.Component {
         active={true}
         direction="up"
         containerStyle={{marginTop: Platform.OS === 'ios' ? 20 : 0}}
-        style={{ backgroundColor: '#5067FF' }}
+        style={{ backgroundColor: '#3C4146' }}
         position="topRight"
         onPress={() => this.props.setShowFilter(true)}>
           <Icon 
             size={25}
             name="filter"
-            color='white'
+            color='orange'
             type="ant-design"
           />
       </Fab>
@@ -192,13 +190,13 @@ export default class HomeScreen extends React.Component {
         active={true}
         direction="up"
         containerStyle={{marginTop: Platform.OS === 'ios' ? 90 : 70}}
-        style={{ backgroundColor: 'red' }}
+        style={{ backgroundColor: '#3C4146' }}
         position="topRight"
         onPress={() => this.props.setShowChat(true)}>
           <Icon 
             size={25}
             name="wechat"
-            color='white'
+            color='orange'
             type="ant-design"
           />
       </Fab>)
@@ -206,30 +204,33 @@ export default class HomeScreen extends React.Component {
 
   getOverlayFilter(){
     return(
-      <Overlay overlayStyle={{height: '90%'}} isVisible={this.props.showFilter}>
+      <Overlay overlayStyle={{height: '90%', backgroundColor: '#293e6a'}} isVisible={this.props.showFilter}>
         <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : "height"}
         style={styles.container}>
         <ScrollView style={{width: 300, height: 400}}>
         <View style={{width: 300, height: '90%'}}>
           <View>
-            <Text style={{fontSize: 18}}>Sort by distance:</Text>
+            <Text style={{fontSize: 18, color: '#B8B8B8'}}>Sort by distance:</Text>
             <Slider
               maximumValue={10}
               minimumValue={1}
+              thumbTintColor="#B8B8B8"
+              minimumTrackTintColor="#1d2c4c"
+              maximumTrackTintColor="#f0f0f0"
               step={1}
               value={this.props.distanceFromMe}
               onValueChange={(value) => {
                 this.props.setDistanceFromMe(value)
               }}
             />
-            <Text>distance from me: less then {this.props.distanceFromMe} km</Text>
+            <Text style={{color: '#B8B8B8'}}>distance from me: less then {this.props.distanceFromMe} km</Text>
           </View>
 
           <View style={{marginTop: 10}}>
-            <Text style={{fontSize: 18}}>Sort by car class:</Text>
+            <Text style={{fontSize: 18, color: '#B8B8B8'}}>Sort by car class:</Text>
             <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
-              <TouchableOpacity style={{width: 140, height: 100, backgroundColor: this.props.selectedCars[0] ? 'blue' : 'gray', alignItems: 'center', borderRadius: 10}} onPress={() => 
+              <TouchableOpacity style={{width: 140, height: 100, alignItems: 'center', borderRadius: 10}} onPress={() => 
                 {
                   let cars = [...this.props.selectedCars];
                   cars[0] = !cars[0];
@@ -237,57 +238,57 @@ export default class HomeScreen extends React.Component {
                 }
                 }>
                 <Image style={{width: 130, height: 70, resizeMode: 'contain'}} source={require('../../../content/images/car.png')}/>
-                <Text style={{fontSize: 18, color: 'white'}}>Default</Text>
+                <Text style={{fontSize: 18, color: '#B8B8B8'}}>Default</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{width: 140, height: 100, backgroundColor: this.props.selectedCars[1] ? 'blue' : 'gray', alignItems: 'center', borderRadius: 10}} onPress={() => 
+              <TouchableOpacity style={{width: 140, height: 100, alignItems: 'center', borderRadius: 10}} onPress={() => 
                 {
                   let cars = [...this.props.selectedCars];
                   cars[1] = !cars[1];
                   this.props.setSelectedCars(cars)
                 }}>
                 <Image style={{width: 130, height: 70, resizeMode: 'contain'}} source={require('../../../content/images/sport.png')}/>
-                <Text style={{fontSize: 18, color: 'white'}}>Sport</Text>
+                <Text style={{fontSize: 18, color: '#B8B8B8'}}>Sport</Text>
               </TouchableOpacity>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 5}}>
-              <TouchableOpacity style={{width: 140, height: 100, backgroundColor: this.props.selectedCars[2] ? 'blue' : 'gray', alignItems: 'center', borderRadius: 10}} onPress={() => 
+              <TouchableOpacity style={{width: 140, height: 100, alignItems: 'center', borderRadius: 10}} onPress={() => 
                 {
                   let cars = [...this.props.selectedCars];
                   cars[2] = !cars[2];
                   this.props.setSelectedCars(cars)
                 }}>
                 <Image style={{width: 130, height: 70, resizeMode: 'contain', }} source={require('../../../content/images/jeep.png')}/>
-                <Text style={{fontSize: 18, color: 'white'}}>Jeep</Text>
+                <Text style={{fontSize: 18, color: '#B8B8B8'}}>Jeep</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{width: 140, height: 100, backgroundColor: this.props.selectedCars[3] ? 'blue' : 'gray', alignItems: 'center', borderRadius: 10}} onPress={() => 
+              <TouchableOpacity style={{width: 140, height: 100, alignItems: 'center', borderRadius: 10}} onPress={() => 
                 {
                   let cars = [...this.props.selectedCars];
                   cars[3] = !cars[3];
                   this.props.setSelectedCars(cars)
                 }}>
                 <Image style={{width: 130, height: 70, resizeMode: 'contain'}} source={require('../../../content/images/truck.png')}/>
-                <Text style={{fontSize: 18, color: 'white'}}>Truck</Text>
+                <Text style={{fontSize: 18, color: '#B8B8B8'}}>Truck</Text>
               </TouchableOpacity>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 5}}>
-              <TouchableOpacity style={{width: 290, height: 100, backgroundColor: this.props.selectedCars[4] ? 'blue' : 'gray', alignItems: 'center', borderRadius: 10}} onPress={() => 
+              <TouchableOpacity style={{width: 290, height: 100, backgroundColor: this.props.selectedCars[4] ? '#3B5998' : '#9f9f9f', alignItems: 'center', borderRadius: 10}} onPress={() => 
                 {
                   let cars = [...this.props.selectedCars];
                   cars[4] = !cars[4];
                   this.props.setSelectedCars(cars)
                 }}>
                 <Image style={{width: 290, height: 70, resizeMode: 'contain'}} source={require('../../../content/images/limousine.png')}/>
-                <Text style={{fontSize: 18, color: 'white'}}>Luxury</Text>
+                <Text style={{fontSize: 18, color: '#B8B8B8'}}>Luxury</Text>
               </TouchableOpacity>
             </View>
             <View style={{marginTop: 10}}>
-              <Text>I prefer: {this.getSelectedCars()}</Text>
+              <Text style={{color: '#B8B8B8'}}>I prefer: {this.getSelectedCars()}</Text>
             </View>
           </View>
 
           <View style={{marginTop: 10}}>
-            <Text style={{fontSize: 18}}>Sort by rating:</Text>
-            <Text>I wanna driver with that rating or more than:</Text>
+            <Text style={{fontSize: 18, color: '#B8B8B8'}}>Sort by rating:</Text>
+            <Text style={{color: '#B8B8B8'}}>I wanna driver with that rating or more than:</Text>
             <AirbnbRating
               count={5}
               defaultRating={this.props.minRating}
@@ -297,18 +298,20 @@ export default class HomeScreen extends React.Component {
             />
           </View>
           <View style={{marginTop: 30}}>
-            <Text style={{fontSize: 18}}>Sort by price:</Text>
-            <Text>Rate should be:</Text>
+            <Text style={{fontSize: 18, color: '#B8B8B8'}}>Sort by price:</Text>
+            <Text style={{color: '#B8B8B8'}}>Rate should be:</Text>
             <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 5}}>
               <Input 
                 value={this.props.priceFrom}
                 onChangeText={(text) => this.props.setPriceFrom(text)}
                 keyboardType="numeric"
+                placeholderTextColor="#B8B8B8"
+                color="#B8B8B8"
                 rightIcon={
                   <Icon
                     name='attach-money'
                     size={20}
-                    color='black'
+                    color='#B8B8B8'
                   />
                 }
               inputStyle={{textAlign: 'center'}} containerStyle={{width: '40%'}} placeholder='FROM'/>
@@ -316,11 +319,13 @@ export default class HomeScreen extends React.Component {
                 value={this.props.priceTo}
                 onChangeText={(text) => {this.props.setPriceTo(text)}}
                 keyboardType="numeric"
+                placeholderTextColor="#B8B8B8"
+                color="#B8B8B8"
                 rightIcon={
                   <Icon
                     name='attach-money'
                     size={20}
-                    color='black'
+                    color='#B8B8B8'
                   />
                 }
               inputStyle={{textAlign: 'center'}} containerStyle={{width: '40%'}} placeholder='TO'/>
@@ -330,7 +335,6 @@ export default class HomeScreen extends React.Component {
         </ScrollView>
         <Button title="APPLY" onPress={() => this.props.setShowFilter(false)} />
         </KeyboardAvoidingView>
-
       </Overlay>
     )
   }
@@ -350,7 +354,7 @@ export default class HomeScreen extends React.Component {
   
   getOverlayChat(){
     return(
-      <Overlay overlayStyle={{width: '100%', height: '100%'}} isVisible={this.props.showChat}>
+      <Overlay overlayStyle={{width: '100%', height: '100%', backgroundColor: '#f0f0f0'}} isVisible={this.props.showChat}>
         <Chat name={this.props.driver != null ? this.props.driver.name : ''} closeChat={this.closeChat}/>
       </Overlay>
     )

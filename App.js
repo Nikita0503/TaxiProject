@@ -63,7 +63,7 @@ const Menu = createBottomTabNavigator(
     showLabel: false,
     activeBackgroundColor: '#3C4146',
     inactiveBackgroundColor: '#3C4146',
-    activeTintColor: 'white',
+    activeTintColor: 'white'
   }
 })
 

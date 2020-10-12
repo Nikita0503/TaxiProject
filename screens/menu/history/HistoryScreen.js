@@ -1,13 +1,19 @@
 import React from 'react';
 import { View, FlatList, Platform, Image, Text, Animated, TouchableOpacity, StyleSheet } from 'react-native';
 import { Fab, Card } from 'native-base';
-import { Icon } from 'react-native-elements';
+import { Icon, Header } from 'react-native-elements';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 export default class HistoryScreen extends React.Component {
 
     render(){
       return (
         <View style={styles.container}>
+            <Header
+                containerStyle={{backgroundColor: '#3C4146'}}
+                centerComponent={{ text: 'History', style: { color: '#f0f0f0' } }}
+            />
             <FlatList
                 style={{width: '100%'}}
                 data={this.props.trips}
@@ -147,7 +153,6 @@ class Item extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: Platform.OS === 'ios' ? 40 : 10, 
       alignItems: 'center'
     }
 });

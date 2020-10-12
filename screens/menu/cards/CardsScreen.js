@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Platform, StyleSheet, FlatList, ScrollView, TouchableOpacity, TextInput, Image, Animated } from 'react-native';
-import { Avatar, Text, Rating } from 'react-native-elements';
+import { Avatar, Text, Rating, Header, Icon } from 'react-native-elements';
 import { Card } from 'native-base';
 
 export default class CardsScreen extends React.Component {
@@ -38,8 +38,13 @@ export default class CardsScreen extends React.Component {
 
     render(){
       return (
+          <View style={styles.container}>
+              <Header
+                containerStyle={{backgroundColor: '#3C4146'}}
+                centerComponent={{ text: 'Payments', style: { color: '#f0f0f0' } }}
+              />
         <ScrollView style={styles.container}>
-          <View style={{paddingTop: Platform.OS === 'ios' ? 40 : 10, alignItems: 'center'}}>
+          <View style={{alignItems: 'center', paddingTop: 10}}>
             <FlatList
                 horizontal
                 pagingEnabled
@@ -66,6 +71,7 @@ export default class CardsScreen extends React.Component {
           {this.getSelectedCard()}
           <View style={{width: '100%', marginTop: 10}}>
             <TouchableOpacity
+                style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}
                 onPress={() => {
                     if(this.props.shownCardBlank){
                         this.hideCardBlank()
@@ -73,7 +79,14 @@ export default class CardsScreen extends React.Component {
                         this.showCardBlank()
                     }
                 }}>
-                <Text style={{fontSize: 16, textAlign: 'center', backgroundColor: '#f0f0f0', marginVertical: 5}}>Add card</Text>
+                <Text style={{fontSize: 20, textAlign: 'center', marginVertical: 5}}>Add card</Text>
+                <Icon 
+                    style={{marginTop: 6, marginLeft: 10}}
+                    size={20}
+                    name={this.props.shownCardBlank ? "up" : "down"}
+                    color='green'
+                    type="ant-design"
+                />
             </TouchableOpacity>
             <Animated.View style={{width: '100%', height: this.state.cardBlankHeight, backgroundColor: 'white'}}>
                 {this.getCardBlank()}
@@ -81,20 +94,21 @@ export default class CardsScreen extends React.Component {
           </View>
           {this.getCheck()}
         </ScrollView>
+        </View>
       );
     }
 
     getSelectedCard(){
         if(this.props.selectedCard != null) {
             return(
-                <View style={{justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#f0f0f0', paddingHorizontal: 10, height: 50}}>
+                <View style={{justifyContent: 'center', alignItems: 'flex-start', paddingHorizontal: 10, height: 50}}>
                     <Text style={{fontSize: 18}}>{"number: " + this.props.selectedCard.cardNumber}</Text>
                     <Text style={{fontSize: 18}}>{"balance: " + this.props.selectedCard.balance + "$"}</Text>
                 </View>
             )
         }
         return(
-            <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: '#f0f0f0', paddingHorizontal: 10, height: 50}}>
+            <View style={{justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10, height: 50}}>
                 <Text style={{fontSize: 18}}>Click to the desired card</Text>
             </View>            
         )

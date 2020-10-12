@@ -230,7 +230,7 @@ export default class HomeScreen extends React.Component {
           <View style={{marginTop: 10}}>
             <Text style={{fontSize: 18, color: '#B8B8B8'}}>Sort by car class:</Text>
             <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
-              <TouchableOpacity style={{width: 140, height: 100, alignItems: 'center', borderRadius: 10}} onPress={() => 
+              <TouchableOpacity style={{width: 140, height: 100, backgroundColor: this.props.selectedCars[0] ? '#3B5998' : '#293e6a', alignItems: 'center', borderRadius: 10}} onPress={() => 
                 {
                   let cars = [...this.props.selectedCars];
                   cars[0] = !cars[0];
@@ -240,7 +240,7 @@ export default class HomeScreen extends React.Component {
                 <Image style={{width: 130, height: 70, resizeMode: 'contain'}} source={require('../../../content/images/car.png')}/>
                 <Text style={{fontSize: 18, color: '#B8B8B8'}}>Default</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{width: 140, height: 100, alignItems: 'center', borderRadius: 10}} onPress={() => 
+              <TouchableOpacity style={{width: 140, height: 100, backgroundColor: this.props.selectedCars[1] ? '#3B5998' : '#293e6a', alignItems: 'center', borderRadius: 10}} onPress={() => 
                 {
                   let cars = [...this.props.selectedCars];
                   cars[1] = !cars[1];
@@ -251,7 +251,7 @@ export default class HomeScreen extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 5}}>
-              <TouchableOpacity style={{width: 140, height: 100, alignItems: 'center', borderRadius: 10}} onPress={() => 
+              <TouchableOpacity style={{width: 140, height: 100, backgroundColor: this.props.selectedCars[2] ? '#3B5998' : '#293e6a', alignItems: 'center', borderRadius: 10}} onPress={() => 
                 {
                   let cars = [...this.props.selectedCars];
                   cars[2] = !cars[2];
@@ -260,7 +260,7 @@ export default class HomeScreen extends React.Component {
                 <Image style={{width: 130, height: 70, resizeMode: 'contain', }} source={require('../../../content/images/jeep.png')}/>
                 <Text style={{fontSize: 18, color: '#B8B8B8'}}>Jeep</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{width: 140, height: 100, alignItems: 'center', borderRadius: 10}} onPress={() => 
+              <TouchableOpacity style={{width: 140, height: 100, backgroundColor: this.props.selectedCars[3] ? '#3B5998' : '#293e6a', alignItems: 'center', borderRadius: 10}} onPress={() => 
                 {
                   let cars = [...this.props.selectedCars];
                   cars[3] = !cars[3];
@@ -271,7 +271,7 @@ export default class HomeScreen extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 5}}>
-              <TouchableOpacity style={{width: 290, height: 100, backgroundColor: this.props.selectedCars[4] ? '#3B5998' : '#9f9f9f', alignItems: 'center', borderRadius: 10}} onPress={() => 
+              <TouchableOpacity style={{width: 290, height: 100, backgroundColor: this.props.selectedCars[4] ? '#3B5998' : '#293e6a', alignItems: 'center', borderRadius: 10}} onPress={() => 
                 {
                   let cars = [...this.props.selectedCars];
                   cars[4] = !cars[4];
@@ -362,9 +362,9 @@ export default class HomeScreen extends React.Component {
 
   getOverlaySelectedDriver(){
     return(
-      <Overlay overlayStyle={{height: 600, width: '90%'}} isVisible={this.props.showDriver}>
+      <Overlay overlayStyle={{height: 600, width: '90%', backgroundColor: '#293e6a'}} isVisible={this.props.showDriver}>
         <ScrollView>
-        <Card>
+        <View>
           <View style={{alignItems: 'center', paddingTop: 10, paddingVertical: 10}}>
             <Avatar
               size="xlarge"
@@ -374,44 +374,44 @@ export default class HomeScreen extends React.Component {
                   this.props.currentDriver != null ? this.props.currentDriver.avatar : '',
               }}
             />
-            <Text style={{fontSize: 24}}>{this.props.currentDriver != null ? this.props.currentDriver.name : ''}</Text>
+            <Text style={{fontSize: 24, color: 'white', marginTop: 10}}>{this.props.currentDriver != null ? this.props.currentDriver.name : ''}</Text>
           </View>
           <View style={{flexDirection: 'row', marginTop: 5, paddingVertical: 10}}>
             <View style={{width: '50%', alignItems: 'center'}}>
-              <Text>Rating:</Text>
+              <Text style={{color: 'white'}}>Rating:</Text>
               <Text style={{color: 'yellow', fontSize: 60}}>{this.props.currentDriver != null ? this.props.currentDriver.rating : ''}</Text>
             </View>
             <View style={{width: '50%', alignItems: 'center'}}>
-              <Text>Car class:</Text>
-              <View style={{backgroundColor: 'gray', borderRadius: 15}}>
+              <Text style={{color: 'white'}}>Car class:</Text>
+              <View style={{backgroundColor: '#293e6a', borderRadius: 15}}>
                 <Image style={{width: 130, height: 70, resizeMode: 'contain'}} source={require('../../../content/images/car.png')}/>
               </View>
             </View>
           </View>
-        </Card>
+        </View>
 
-        <Card style={{paddingVertical: 5}}>
+        <View style={{paddingVertical: 5}}>
           <Image
             style={{height: 220, borderRadius: 5, resizeMode: 'contain'}}
             source={{
               uri: this.props.currentDriver != null ? this.props.currentDriver.carAvatar : '',
           }}/>
-        </Card>
+        </View>
 
-        <Card style={{flexDirection: 'row', paddingVertical: 10}}>
+        <View style={{flexDirection: 'row', paddingVertical: 10}}>
           <View style={{width: '50%', alignItems: 'center'}}>
-            <Text>distance to you:</Text>
+            <Text style={{color: 'white'}}>distance to you:</Text>
             <Text style={{fontSize: 35, color: '#C0C0C0', marginTop: 5}}>{this.props.currentDriver != null ? this.props.currentDriver.distance : ''} m</Text>
           </View>
           <View style={{width: '50%', alignItems: 'center'}}>
-            <Text>Rate:</Text>
+            <Text style={{color: 'white'}}>Rate:</Text>
             <Text style={{fontSize: 35, color: '#808080', marginTop: 5}}>{this.props.currentDriver != null ? this.props.currentDriver.rate : ''} $/km</Text>
           </View>
-        </Card>
+        </View>
 
-        <Card style={{paddingVertical: 5}}>
+        <View style={{paddingVertical: 5}}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{width: '75%', textAlign: 'center'}}>Сan drive your vehicle</Text>
+            <Text style={{width: '75%', textAlign: 'center', color: 'white'}}>Сan drive your vehicle</Text>
             <Icon 
               size={16}
               raised
@@ -421,7 +421,7 @@ export default class HomeScreen extends React.Component {
             />
           </View>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{width: '75%', textAlign: 'center'}}>Сan deliver food</Text>
+            <Text style={{width: '75%', textAlign: 'center', color: 'white'}}>Сan deliver food</Text>
             <Icon 
               size={16}
               raised
@@ -432,7 +432,7 @@ export default class HomeScreen extends React.Component {
             />
           </View>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{width: '75%', textAlign: 'center'}}>Сan be your driver all day</Text>
+            <Text style={{width: '75%', textAlign: 'center', color: 'white'}}>Сan be your driver all day</Text>
             <Icon 
               size={16}
               raised
@@ -441,14 +441,14 @@ export default class HomeScreen extends React.Component {
               color='#03AC13'
             />
           </View>
-        </Card>
+        </View>
 
         </ScrollView>
         <View style={{width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}}>
-          <Button style={{width: '50%'}} title="BACK" onPress={() => {
+          <Button style={{width: '50%'}} color="white" title="BACK" onPress={() => {
             this.props.setShowDriver(false)
           }} />
-          <Button style={{width: '50%'}} title="CALL" onPress={() => {
+          <Button style={{width: '50%'}} color="white" title="CALL" onPress={() => {
             this.props.setDriver(this.props.currentDriver);
             this.props.setShowDrivers(false);
             this.props.setShowDriver(false);

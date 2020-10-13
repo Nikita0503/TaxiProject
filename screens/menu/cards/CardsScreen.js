@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Platform, StyleSheet, FlatList, ScrollView, TouchableOpacity, TextInput, Image, Animated } from 'react-native';
 import { Avatar, Text, Rating, Header, Icon } from 'react-native-elements';
 import { Card } from 'native-base';
+import LinearGradient from 'react-native-linear-gradient';
 
 export default class CardsScreen extends React.Component {
 
@@ -57,7 +58,7 @@ export default class CardsScreen extends React.Component {
                 renderItem={({ item }) => 
                     <BankCard
                         info={item}
-                        color={item.color}
+                        colors={item.colors}
                         cardNumber={item.cardNumber}
                         validThruMM={item.validThruMM}
                         validThruYY={item.validThruYY}
@@ -69,7 +70,7 @@ export default class CardsScreen extends React.Component {
             />
           </View>
           {this.getSelectedCard()}
-          <View style={{width: '100%', marginTop: 10}}>
+          <View style={{width: '100%'}}>
             <TouchableOpacity
                 style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}
                 onPress={() => {
@@ -79,6 +80,7 @@ export default class CardsScreen extends React.Component {
                         this.showCardBlank()
                     }
                 }}>
+                <Card style={{flexDirection: 'row', width: '95%', borderRadius: 10, justifyContent: 'center', alignItems: 'center'}}>
                 <Text style={{fontSize: 20, textAlign: 'center', marginVertical: 5}}>Add card</Text>
                 <Icon 
                     style={{marginTop: 6, marginLeft: 10}}
@@ -87,8 +89,9 @@ export default class CardsScreen extends React.Component {
                     color='green'
                     type="ant-design"
                 />
+                </Card>
             </TouchableOpacity>
-            <Animated.View style={{width: '100%', height: this.state.cardBlankHeight, backgroundColor: 'white'}}>
+            <Animated.View style={{width: '100%', height: this.state.cardBlankHeight, backgroundColor: '#f0f0f0'}}>
                 {this.getCardBlank()}
             </Animated.View>
           </View>
@@ -101,14 +104,25 @@ export default class CardsScreen extends React.Component {
     getSelectedCard(){
         if(this.props.selectedCard != null) {
             return(
-                <View style={{justifyContent: 'center', alignItems: 'flex-start', paddingHorizontal: 10, height: 50}}>
+                /*<View style={{justifyContent: 'center', alignItems: 'flex-start', paddingHorizontal: 10, height: 50}}>
                     <Text style={{fontSize: 18}}>{"number: " + this.props.selectedCard.cardNumber}</Text>
                     <Text style={{fontSize: 18}}>{"balance: " + this.props.selectedCard.balance + "$"}</Text>
-                </View>
+                </View>*/
+                <Card style={{width: '95%', height: 100, flexDirection: 'row', backgroundColor: 'white', borderRadius: 15, margin: 10, alignSelf: 'center'}}>
+                    <View style={{width: '40%', alignItems: 'center', justifyContent: 'center'}}>
+                        <Card style={{width: 100, height: 60, backgroundColor: '#f0f0f0', borderRadius: 100, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text style={{fontSize: 24}}>{this.props.selectedCard.balance + "$"}</Text>
+                        </Card>
+                        <Text>balance</Text>
+                    </View>
+                    <View style={{width: '60%', justifyContent: 'center', alignItems: 'flex-end', paddingRight: 20}}>
+                        <Text style={{fontSize: 18}}>{this.props.selectedCard.cardHolderName}</Text>
+                    </View>
+                </Card>
             )
         }
         return(
-            <View style={{justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10, height: 50}}>
+            <View style={{justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10, height: 50, marginTop: 5}}>
                 <Text style={{fontSize: 18}}>Click to the desired card</Text>
             </View>            
         )
@@ -116,8 +130,8 @@ export default class CardsScreen extends React.Component {
 
     getCardBlank(){
         return(
-            <Animated.View style={{opacity: this.state.cardBlankVisibility}}>
-                 <View style={{width: '70%', height: '90%', backgroundColor: '#f0f0f0', borderRadius: 15, position: 'absolute', right: 0, bottom: 0}}>
+            <Animated.View style={{opacity: this.state.cardBlankVisibility, backgroundColor: '#f0f0f0'}}>
+                 <View style={{width: '70%', height: '90%', backgroundColor: '#b6a702', borderRadius: 15, position: 'absolute', right: 0, bottom: 0}}>
                     <View style={{width: '100%', height: '50%', justifyContent: 'center'}}>
                         <TouchableOpacity onPress={() => {
                                 this.hideCardBlank();
@@ -145,7 +159,7 @@ export default class CardsScreen extends React.Component {
                             
                         </View>
                         <View style={{width: '40%', flexDirection: 'row', alignItems: 'center'}}>
-                            <Text style={{fontSize: 12, textAlign: 'right', marginRight: 5}}>CVC2 /{"\n"}CVV</Text>
+                            <Text style={{fontSize: 12, textAlign: 'right', marginRight: 5, color: 'white'}}>CVC2 /{"\n"}CVV</Text>
                             <TextInput
                                 style={{backgroundColor: 'white', padding: 0, fontSize: 12, height: this.props.shownCardBlank ? 25 : 0, width: 50, borderWidth: this.props.shownCardBlank ? 1 : 0, borderColor: 'black', textAlign: 'center'}}
                                 keyboardType="numeric"
@@ -156,10 +170,10 @@ export default class CardsScreen extends React.Component {
                         </View>
                     </View>
                 </View>
-                <View style={{width: '70%', height: '90%', backgroundColor: 'gray', borderRadius: 15}}>
+                <View style={{width: '70%', height: '90%', backgroundColor: '#decc0d', borderRadius: 15}}>
                     <View style={{width: '100%', height: '50%', alignItems: 'center', justifyContent: 'space-around'}}>
                         <View style={{width: '100%', alignItems: 'center'}}>
-                            <Text style={{width: '90%', textAlign: 'right', fontSize: 10}}>Card number</Text>
+                            <Text style={{width: '90%', textAlign: 'right', fontSize: 10, color: 'white'}}>Card number</Text>
                             <TextInput
                                 style={{backgroundColor: 'white', padding: 0, fontSize: 12, height: this.props.shownCardBlank ? 25 : 0, width: '90%', borderWidth: this.props.shownCardBlank ? 1 : 0, borderColor: 'black', textAlign: 'center'}}
                                 keyboardType="numeric"
@@ -169,7 +183,7 @@ export default class CardsScreen extends React.Component {
                             />
                         </View>
                         <View style={{width: '90%', flexDirection: 'row', alignItems: 'center'}}>
-                            <Text style={{width: '50%', textAlign: 'center', fontSize: 10}}>Valid thru (MM/ YY)</Text>
+                            <Text style={{width: '50%', textAlign: 'center', fontSize: 10, color: 'white'}}>Valid thru (MM/ YY)</Text>
                             <View style={{width: '50%', flexDirection: 'row', justifyContent: 'space-between'}}>
                                 <TextInput
                                     style={{backgroundColor: 'white', padding: 0, fontSize: 12, height: this.props.shownCardBlank ? 25 : 0, width: '40%', borderWidth: this.props.shownCardBlank ? 1 : 0, borderColor: 'black', textAlign: 'center'}}
@@ -189,7 +203,7 @@ export default class CardsScreen extends React.Component {
                         </View>
                     </View>
                     <View style={{width: '100%', height: '50%', paddingHorizontal: 10, justifyContent: 'center'}}>
-                            <Text style={{width: '100%', textAlign: 'right', fontSize: 12}}>Card holder name</Text>
+                            <Text style={{width: '100%', textAlign: 'right', fontSize: 12, color: 'white'}}>Card holder name</Text>
                             <TextInput
                                 style={{backgroundColor: 'white', padding: 0, fontSize: 12, height: this.props.shownCardBlank ? 25 : 0, width: '100%', borderWidth: this.props.shownCardBlank ? 1 : 0, borderColor: 'black', textAlign: 'center'}}
                                 keyboardType="numeric"
@@ -290,9 +304,8 @@ export default class CardsScreen extends React.Component {
   {
       return(
         <TouchableOpacity onPress={() => {props.selectCard(props.info)}}>
-            <View style={{width: 340, 
+            <LinearGradient colors={[props.colors[0], props.colors[1], props.colors[2]]}  style={{width: 340, 
                 height: 200, 
-                backgroundColor: props.color,
                 alignItems: 'center',
                 borderRadius: 15,
                 marginHorizontal: 5}}>
@@ -313,7 +326,7 @@ export default class CardsScreen extends React.Component {
                             />
                         </View>
                     </View>
-            </View>
+            </LinearGradient>
         </TouchableOpacity>
       )
   }
@@ -321,6 +334,7 @@ export default class CardsScreen extends React.Component {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
+      backgroundColor: '#f0f0f0'
     }
   });
   

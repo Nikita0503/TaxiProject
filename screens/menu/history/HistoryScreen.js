@@ -143,7 +143,9 @@ class Item extends React.Component {
                                 </View>
                             </Card>
                         </Animated.View>
+                        
                     </View>
+                    
                 </TouchableOpacity>
             </Animated.View>
         )    
@@ -153,7 +155,8 @@ class Item extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      alignItems: 'center'
+      alignItems: 'center',
+      backgroundColor: '#f0f0f0'
     }
 });
   

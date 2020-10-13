@@ -16,48 +16,48 @@ const defaultState = {
         {
           id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
           cardNumber: '1151 5238 2015 2300',
-          validThruMM: '12',
-          validThruYY: '34',
-          cardHolderName: '123Lee M. Cardholder',
-          color: 'green',
+          validThruMM: '08',
+          validThruYY: '09',
+          cardHolderName: 'Lee M. Cardholder',
+          colors: ['#88d00b', '#7faf2c', '#597a1f'],
           balance: 119
         },
         {
           id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
           cardNumber: '2151 5238 2015 2300',
           validThruMM: '12',
-          validThruYY: '34',
-          cardHolderName: 'Lee M. Cardholder',
-          color: 'blue',
+          validThruYY: '10',
+          cardHolderName: 'Caleb Backer',
+          colors: ['#495cd0', '#29399e', '#1d2971'],
           balance: 1000
         },
         {
-          id: '58694a0f-3da1-471f-bd96-145571e29d72',
-          cardNumber: '3151 5238 2015 2300',
-          validThruMM: '12',
-          validThruYY: '34',
-          cardHolderName: 'Lee M. Cardholder',
-          color: 'yellow',
-          balance: 252
-        },
-        {
           id: '58694a0f-3da1-471f-bd96-141271e29d72',
-          cardNumber: '4151 5238 2015 2300',
-          validThruMM: '12',
-          validThruYY: '34',
-          cardHolderName: 'Lee M. Cardholder',
-          color: 'red',
+          cardNumber: '5308 9184 7446 2085',
+          validThruMM: '07',
+          validThruYY: '11',
+          cardHolderName: 'Arnold Campbell',
+          colors: ['#d25251', '#a62c2b', '#7a201f'],
           balance: 503
         },
         {
           id: '58694a0f-3da1-471f-bd96-145571e25h72',
-          cardNumber: '5151 5238 2015 2300',
+          cardNumber: '6122 0136 8173 6041',
           validThruMM: '12',
           validThruYY: '34',
-          cardHolderName: 'Lee M. Cardholder',
-          color: 'orange',
+          cardHolderName: 'Timothy Durham',
+          colors: ['#ffcc00', '#d6ab00', '#9e7e00'],
           balance: 374
         },
+        {
+            id: '58694a0f-3da1-471f-bd96-145571e29d72',
+            cardNumber: '3418 3468 7839 3374',
+            validThruMM: '02',
+            validThruYY: '10',
+            cardHolderName: 'Zhess Harris',
+            colors: ['#eff26d', '#cccf44', '#a8aa2c'],
+            balance: 252
+          },
     ],
     shownCardBlank: false,
     cardNumber: '',
@@ -85,11 +85,19 @@ const defaultState = {
         },
         {
             id: 3,
-            name: 'Shakal',
+            name: 'Morgensterm',
             avatar: 'https://www.infox.ru/photo/13c/e0e/13ce0e4824b970d8fd71178b1c26e913asdasdasd5ee226bc1d9d53.28424698-650x433-13ce0e4824b970d8fd71178b1c26e913.jpg',
             car: 'BMW x7',
             drove: 25,
             sum: 21
+        },
+        {
+            id: 4,
+            name: 'Denis Romashin',
+            avatar: 'https://lh3.googleusercontent.com/L0nvqELFvwtMjrwbqAXdsKq19DMrc2sc87sfO2tfx7XYpVc9N6-I5D8-5gzRq60BmUS2=s88',
+            car: 'Deo Lanos',
+            drove: 45,
+            sum: 2
         }
     ]
 }
